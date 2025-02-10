@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .find-box {
+        text-align: center;
+        margin: 50px auto;
+        max-width: 600px;
+    }
+
+    .find-box h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 10px;
+    }
+
+    .find-box h4 {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .product-sh {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .product-sh input[type="text"] {
+        width: 70%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+    
+    .product-sh input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .product-sh button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .product-sh button:hover {
+        background: linear-gradient(135deg, #0056b3, #003c80);
+    }
+
+    .product-list {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .product-list .product-card {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .product-list .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-list img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .product-list h4 {
+        font-size: 1.2rem;
+        margin: 10px 0 5px;
+        color: #222;
+    }
+
+    .product-list p {
+        color: #555;
+        margin: 5px 0;
+    }
+</style>
+
+<div class="find-box">
+    <h1>Find your next product or business partner here.</h1>
+    <h4>It has never been easier.</h4>
+    
+    <div class="product-sh">
+        <form method="GET" action="{% url 'search_products' %}">
+            <input type="text" name="q" placeholder="Search something you love" value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="product-list">
+        {% if products %}
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h4>{{ product.name }}</h4>
+                    <p><strong>Price:</strong> ${{ product.price }}</p>
+                    <p><strong>Brand:</strong> {{ product.brand }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<div class="page-content-product">
+   <div class="main-product">
+       <div class="container">
+           <div class="row clearfix">
+               <div class="find-box">
+                  <h1>Keyingi mahsulotingiz yoki<br>biznes hamkoringizni shu yerda toping.</h1>
+                  <h4>Bu hech qachon bunchalik oson bo‘lmagan.</h4>
+                  
+                   
+                   <div class="product-sh">
+                       <form method="GET" action="{% url 'search_products' %}">
+                           <div class="row">
+                               <!-- Qidiruv inputi -->
+                               <div class="col-sm-6">
+                                   <div class="form-sh">
+                                       <input type="text" name="q" class="form-control"
+                                           placeholder="Search something you love" value="{{ request.GET.q }}">
+                                   </div>
+                               </div>
+
+                               <!-- Kategoriya tanlash -->
+                               <div class="col-sm-3">
+                                   <div class="form-sh">
+                                       <select name="category" class="form-control">
+                                           <option value="">All Categories</option>
+                                           {% for One in One_list %}
+                                               <option value="{{ One.id }}">{{ One.name }}</option>
+                                           {% endfor %}
+                                       </select>
+                                   </div>
+                               </div>
+                 
+                  <div class="col-sm-3">
+                     <div class="form-sh"> <a class="btn" href="#">Search</a> </div>
+                  </div>
+                  <p>Yoki shunchaki <a href="#"> shu yerni bosing </a> va ilhom oling!</p>
+
+               </div>
+            </div>
+         </div>
+         <div class="row clearfix">
+            
+            {% for One in One_list %}
+            <div class="col-lg-3 col-sm-6 col-md-3">
+                <a href="{% url 'product_page' %}">
+                    <div class="box-img">
+                        <h4>{{ One.name }}</h4>
+                        <img src="{{ One.image.url }}" alt="{{ One.name }}" />
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        
+
+            <div class="categories_link">
+               <a href="#">Barcha kategoriyalarni shu yerdan ko‘ring</a>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="cat-main-box">
+   <div class="container">
+      <div class="row panel-row">
+         <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.0s">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <img src="{% static 'images/xpann-icon.jpg' %}" class="icon-small" alt="">
+                              <h4>“Mebel.dor” Biznesingiz Uchun</h4>
+            <p>Mebel.dor bilan oson rivojlaning. Bepul hisob yarating.  
+               Biz sizning biznesingizni oson kengaytirishga yordam beramiz.
+            </p>
+
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <img src="{% static 'images/create-icon.jpg' %}" class="icon-small" alt="">
+                  <h4>Yaratish va qo‘shish</h4>
+                  <p>Mebel.dor bilan oson rivojlaning. Bepul hisob yarating.  
+                     Biz sizning biznesingizni oson kengaytirishga yordam beramiz.
+                  </p>
+                  
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 col-sm-6 wow fadeIn hidden-sm" data-wow-delay="0.4s">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <img src="{% static 'images/get-icon.jpg' %}" class="icon-small" alt="">
+                  <h4>Ilhomlaning</h4>
+                  <p>Mebel.dor bilan oson rivojlaning. Bepul hisob yarating.  
+                     Biz sizning biznesingizni oson kengaytirishga yordam beramiz.
+                  </p>
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="products_exciting_box">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+            <div class="exciting_box f_pd">
+               <img src="{% static 'images/exciting_img-01.jpg' %}" class="icon-small" alt="" />
+               <h4>Sizga moslangan <strong>qiziqarli</strong> va noyob mahsulotlarni kashf qiling.</h4>
+               <p>Biz bilan zamonaviy va sifatli mebellarni kashf eting.  
+                  Har qanday interyerga mos keluvchi nafis va qulay mahsulotlar.  
+                  Mebel.dor yordamida orzuingizdagi uy jihozlariga ega bo‘ling!
+               </p>
+               
+
+            </div>
+         </div>
+         <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+            <div class="exciting_box l_pd">
+               <img src="{% static 'images/exciting_img-02.jpg' %}" class="icon-small" alt="" />
+               <h4><strong>Mahsulotlaringizni</strong> Mebel.dor platformasida joylashtiring va hamkorlikni kengaytiring.</h4>
+               <p>Sifatli mebellaringizni minglab mijozlarga taqdim eting.  
+                  Mebel.dor sizga yangi hamkorlar topish va biznesingizni kengaytirish imkoniyatini beradi!
+               </p>
+               
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="start-free-box">
+   <div class="container">
+      <div class="row">
+         <div class="container">
+            <div class="main-start-box">
+               <div class="free-box-a clearfix">
+                  <div class="col-md-6 col-sm-6">
+                     <div class="left-a-f">
+                        <h3>Kengayish va o‘sish uchun yaratilgan platforma. Bepul boshlang.</h3>
+
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                     <div class="right-a-f">
+                        <p>Kelgusi yillarda internet orqali biznes yuritish usullari katta o‘zgarishga uchraydi,  
+                           va Mebel.dor bu sohadagi o‘yinni o‘zgartiruvchi kuch bo‘ladi.
+                        </p>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="main-start-box">
+            <div class="bg_img_left"><img src="{% static 'images/bg_img1.png' %}" alt="#" /></div>
+            <div class="container">
+               <div class="buyer-box clearfix">
+                  <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                     <div class="left-buyer">
+                        <img class="img-responsive" src="{% static 'images/creat_pro.png' %}" alt="#" />
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                     <div class="right-buyer">
+                        <h4>Xaridor</h4>
+                        <h2>Fabrikangizni rivojlantiring<br>
+                           <span>Yangi yetakchi kanal bilan</span>
+                        </h2>
+                        <p>Sotuv va daromad haqida endi tashvishlanmang.  
+                           Mebel.dor bilan do‘koningiz minglab qiziqqan mijozlarga to‘g‘ridan-to‘g‘ri ulanadi.
+                        </p>
+                        
+                        <a href="#">Ko'proq m</a>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="bg_img_right"><img src="{% static 'images/bg_img1.png' %}" alt="#" /></div>
+         <div class="main-start-box">
+            <div class="container">
+               <div class="supplier clearfix">
+                  <div class="col-md-5 col-sm-6">
+                     <div class="left-supplier">
+                        <h4>Yetkazib beruvchi</h4>
+                        <h2>Do‘koningizni rivojlantiring <br><span>Yangi savdo kanali bilan</span></h2>
+                        <p>Sotuv va daromad haqida endi tashvishlanmang.  
+                           Mebel.dor bilan do‘koningiz minglab mahsulotlaringizga qiziqqan mijozlarga to‘g‘ridan-to‘g‘ri ulanadi.
+                        </p>
+                        
+                        <a href="#">Yetkazib </a>
+                        
+                     </div>
+                  </div>
+                  <div class="col-md-7 col-sm-6">
+                     <div class="right-supplier">
+                        <img class="img-responsive" src="{% static 'images/supplier-pc-img.png ' %}" alt="#" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="products">
+   <div class="main-products">
+      <h2>mebel.dor</h2>
+     
+      <div class="product-slidr">
+         <div class="slider">
+             
+            {% for product in products_list %}
+             <div>
+                 <div class="prod-box">
+                     <div class="prod-i">
+                         <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                     </div>
+                     <div class="prod-dit clearfix">
+                         <div class="dit-t clearfix">
+                             <div class="left-ti">
+                                 <h4>{{ product.name }}</h4>
+                                 <p>By <span>{{ product.brand }}</span></p>
+                             </div>
+                             <a href="#">${{ product.price }}</a>
+                         </div>
+                         <div class="dit-btn clearfix">
+                             <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
+                             <a class="thi" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Buy this</a>
+
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             {% endfor %}
+
+         </div>
+     </div>
+
+   </div>
+</div>
+<script>
+   $(document).ready(function(){
+       $('.slider').slick({
+           slidesToShow: 3, // Bir vaqtda ko‘rinadigan slaydlar soni
+           slidesToScroll: 1,
+           autoplay: true, // Avtomatik harakatlanish
+           autoplaySpeed: 2000, // 2 soniyada bir slayd
+           dots: true, // Pastki nuqtalar (indicators)
+           arrows: true, // O‘ng va chap tugmalar
+           responsive: [
+               {
+                   breakpoint: 1024,
+                   settings: {
+                       slidesToShow: 2
+                   }
+               },
+               {
+                   breakpoint: 768,
+                   settings: {
+                       slidesToShow: 1
+                   }
+               }
+           ]
+       });
+   });
+</script>
+
+
+{% endblock content %}
